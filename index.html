@@ -64,6 +64,51 @@
           <span class="form-message"></span>
         </div>
 
+        <div class="form-group">
+          <label for="password_confirmation" class="form-label"
+            >Ảnh đại diện</label
+          >
+          <input
+            id="avatar"
+            name="avatar"
+            type="file"
+            class="form-control"
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            >Tỉnh/TP</label
+          >
+          <select name="province" id="province" class="form-control">
+            <option value="">-- Chọn Tỉnh/TP</option>
+            <option value="bli">Bạc Liêu</option>
+            <option value="cma">Cà Mau</option>
+          </select>
+          
+          <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password_confirmation" class="form-label"
+            >Giới tính</label
+          >
+          <div>
+            <input name="gender" type="radio" value="male" class="form-control">
+            Nam
+          </div>
+          <div>
+            <input name="gender" type="radio" value="female" class="form-control">
+            Nữ
+          </div>
+          <div>
+            <input name="gender" type="radio" value="other" class="form-control">
+            Khác
+          </div>
+          <span class="form-message"></span>
+        </div>
+
         <button class="form-submit">Đăng ký</button>
       </form>
     </div>
@@ -181,6 +226,7 @@
         Validator({
             form: '#form-1',
             errorSelector: '.form-message',
+            formGroupSelector: '.form-group',
             rules: [
                 Validator.isRequired('#fullname', 'Vui lòng nhập đầy đủ họ tên'),
                 Validator.isRequired('#email', 'Vui lòng nhập email'),
@@ -191,6 +237,9 @@
                 Validator.isConfirmed('#password_confirmation', function () {
                   return document.querySelector('#form-1 #password').value
                 }, 'Vui lòng nhập mật khẩu trùng khớp'),
+                Validator.isRequired('input[name="gender"]', 'Vui lòng chọn giới tính'),
+                Validator.isRequired('#province', 'Vui lòng chọn Tỉnh/TP'),
+                Validator.isRequired('#avatar', 'Vui lòng chọn ảnh đại diện')
             ],
             submit: function (data) {
               console.log(data)
